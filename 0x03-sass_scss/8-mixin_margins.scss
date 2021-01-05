@@ -1,0 +1,27 @@
+/* Sass file that assigns:
+
+Margin left and right at 10px to body tags
+Margin left and right at 15px to div tags
+You must use a mixin
+*/
+$size: 10px;
+
+@mixin marginmix ($div: false) {
+    @if $div {
+        margin-left: $size + 5;
+        margin-right: $size + 5;
+    }
+
+    @else {
+        margin-left: $size;
+        margin-right: $size;
+    }
+}
+
+body {
+    @include marginmix($div: false);
+}
+
+div {
+    @include marginmix($div: true);
+}
