@@ -12,11 +12,27 @@
         }
 
         function showCookies() {
-            var decodedCookie = `Cookies: ${decodeURIComponent(document.cookie)}`;
+            var decodedCookie = `Email: ${getCookie('email')} - Firstname: ${getCookie('firstname')}`;
             var pa = document.createElement('p');
             var node = document.createTextNode(decodedCookie);
             pa.appendChild(node);
             document.body.appendChild(pa);
+        }
+
+        function getCookie (name) {
+            var cname = name + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(cname) == 0) {
+                return c.substring(cname.length, c.length);
+                }
+            }
+            return "";
         }
     </script>
     <title>Login</title>
@@ -24,7 +40,7 @@
 <body>
     <h1>Login to the website</h1>
     <form>
-        <input type="text" id="firstname" name="fname" placeholder="Firstname">
+        <input type="text" id="firstname" placeholder="Firstname">
         <input type="email" id="email" placeholder="Email">
         <button onclick="setCookies()">Log me in</button>
     </form>
