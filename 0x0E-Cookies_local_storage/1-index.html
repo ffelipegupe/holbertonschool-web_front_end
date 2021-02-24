@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <script>
+        function setCookies() {
+            var days = new Date();
+            days.setTime(days.getTime() + (10*24*60*60*1000));
+            document.cookie = `firstname=${document.getElementById('firstname').value}; expires=${days.toGMTString()}; path=/`;
+            document.cookie = `email=${document.getElementById('email').value}; expires=${days.toGMTString()}; path=/`;
+        }
+
+        function showCookies() {
+            var decodedCookie = `Cookies: ${decodeURIComponent(document.cookie)}`;
+            var pa = document.createElement('p');
+            var node = document.createTextNode(decodedCookie);
+            pa.appendChild(node);
+            document.body.appendChild(pa);
+        }
+    </script>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login to the website</h1>
+    <form>
+        <input type="text" id="firstname" name="fname" placeholder="Firstname">
+        <input type="email" id="email" name="email" placeholder="Email">
+        <button onclick="setCookies()">Log me in</button>
+    </form>
+    <h1>Cookies</h1>
+    <button onclick="showCookies()">Show the cookies</button>
+</body>
+</html>
